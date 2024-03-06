@@ -1,7 +1,6 @@
 #! /bin/sh
 
 pgrep -x sxhkd > /dev/null || sxhkd &
-
 $HOME/.config/polybar/launch.sh &
 
 xset r rate 300 50 -b -dpms &
@@ -16,7 +15,7 @@ bspc config gapless_monocle      true
 
 
 # general
-bspc config border_width                2
+bspc config border_width                1
 bspc config borderless_monocle          true
 bspc config bottom_padding              0
 bspc config focus_follows_pointer       true
@@ -29,10 +28,10 @@ bspc config pointer_modifier            mod4
 bspc config right_padding               0
 bspc config single_monocle              true
 bspc config top_padding                 0
-bspc config window_gap                  0
-
+bspc config window_gap                  2
 # colors
-bspc config focused_border_color        "#FFFF00"
+# bspc config focused_border_color        "#2aa198"
+bspc config focused_border_color        "#859900"
 bspc config normal_border_color         "#839496"
 bspc config presel_feedback_color       "#839496"
 
@@ -45,4 +44,3 @@ bspc rule -a studio='^9'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
-bspc rule -a 'studio' desktop=NEW +desktop NEW 

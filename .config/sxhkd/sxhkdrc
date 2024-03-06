@@ -2,9 +2,23 @@
 # wm independent hotkeys
 #
 
+# switch between the desktops
+ctrl + alt + Right
+    bspc desktop -f next
+
+ctrl + alt + Left
+    bspc desktop -f prev
+
+ctrl + alt + delete
+	slock
+
 # terminal emulator
 super + Return
 	kitty
+
+# open vlc 
+super + v
+	vlc
 
 # program launcher
 super + @space

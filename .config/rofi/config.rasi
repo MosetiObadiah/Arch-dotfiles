@@ -1,0 +1,18 @@
+configuration {
+  show-icons:         true;
+  icon-theme:         "Papirus";
+  
+  mode: "drun";
+  drun-command: "sh /home/user85/.config/rofi/launch_app.sh";
+  
+}
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+//@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+@theme "/home/user85/.config/rofi/themes/simple-tokyonight.rasi"

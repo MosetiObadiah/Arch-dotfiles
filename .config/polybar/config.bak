@@ -51,7 +51,7 @@ separator-foreground = ${colors.disabled}
 font-0 = monospace;2
 
 modules-left = xworkspaces xwindow
-modules-right = filesystem pulseaudio xkeyboard memory cpu wlan eth date
+modules-right = pulseaudio backlight memory cpu wlan eth battery date
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -93,17 +93,6 @@ label-empty-padding = 1
 type = internal/xwindow
 label = %title:0:60:...%
 
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted = %{F#F0C674}%mountpoint%%{F-} %percentage_used%%
-
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.disabled}
-
 [module/pulseaudio]
 type = internal/pulseaudio
 
@@ -116,17 +105,6 @@ label-volume = %percentage%%
 label-muted = muted
 label-muted-foreground = ${colors.disabled}
 
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
-
-label-layout = %layout%
-label-layout-foreground = ${colors.primary}
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-foreground = ${colors.background}
-label-indicator-background = ${colors.secondary}
 
 [module/memory]
 type = internal/memory
@@ -135,12 +113,26 @@ format-prefix = "RAM "
 format-prefix-foreground = ${colors.primary}
 label = %percentage_used:2%%
 
-[module/brightness]
-type = custom/script
-exec = ~/.config/polybar/scripts/brightness_level.sh
-interval = 5
-label = %percentage%%
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+use-actual-brightness = true
+poll-interval = 0
+enable-scroll = true
+scroll-interval = 10
+click-left = ~/.config/polybar/scripts/brightness_scroll.sh up 5
+click-right = ~/.config/polybar/scripts/brightness_scroll.sh down 5
 
+format-brightness-prefix = "Light "
+format-brightness-prefix-foreground = ${colors.primary}
+format-brightness = <label-brightness>
+
+label-brightness = %percentage%%
+
+bar-width = 10
+bar-indicator = |
+bar-fill = -
+bar-empty = -
 
 [module/cpu]
 type = internal/cpu
@@ -151,7 +143,7 @@ label = %percentage:2%%
 
 [network-base]
 type = internal/network
-interval = 5
+interval = 4
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
 label-disconnected = %{F#F0C674}%ifname%%{F#707880} disconnected
